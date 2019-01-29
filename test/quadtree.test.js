@@ -31,16 +31,7 @@ describe('# Rectangle Object', () =>{
         expect(r2.w).to.equal(8);
         expect(r2.h).to.equal(11);
     });
-    it('Should not be able to set x, y, w or h to anything but a number', () => {    
-        r1.x = "test";
-        r1.y = "test";
-        r1.w = "test";
-        r1.h = "test";
-        expect(r1.x).to.equal(0);
-        expect(r1.y).to.equal(0);
-        expect(r1.w).to.equal(0);
-        expect(r1.h).to.equal(0);
-    });
+
     //TODO check the contains functio
     
     
