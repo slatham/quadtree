@@ -1,0 +1,32 @@
+{
+  "name": "quadtree",
+  "version": "1.0.0",
+  "description": "Basic quadtree data structure",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slatham/quadtree.git"
+  },
+  "keywords": [
+    "quadtree",
+    "qt",
+    "qtree",
+    "k-tree"
+  ],
+  "author": "S J Latham",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/slatham/quadtree/issues"
+  },
+  "homepage": "https://github.com/slatham/quadtree#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "chai": "^4.2.0"
+  }
+}
