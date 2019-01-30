@@ -32,42 +32,57 @@ describe('# Rectangle Object', () =>{
         expect(r2.h).to.equal(11);
     });
     it('Should have a function to determine if a point is contained in the rectangle', () =>{
-        expect(r1.contains).to.be.a('function');
+        expect(r1.containsPoint).to.be.a('function');
     });
-    //TODO check the contains functio
     it('Should return TRUE if a point is contained within the rectangle', () => {
         let point = {x:2.1234,y:93.1234};
-        expect(r1.contains(point)).to.equal(true);
+        expect(r1.containsPoint(point)).to.equal(true);
     });
 
     it('Should return TRUE if a point is is on the x border of the rectangle and y is within the rectangle', () => {
         let point = {x:-2.23456,y:93.1234};
-        expect(r1.contains(point)).to.equal(true);
+        expect(r1.containsPoint(point)).to.equal(true);
     });
 
     it('Should return TRUE if a point is is on the y border of the rectangle and x is within the rectangle', () => {
         let point = {x:-1.23456,y:92.12345};
-        expect(r1.contains(point)).to.equal(true);
+        expect(r1.containsPoint(point)).to.equal(true);
     });
 
     it('Should return TRUE if a point is is on the y and x border of the rectangle', () => {
         let point = {x:-2.23456,y:92.12345};
-        expect(r1.contains(point)).to.equal(true);
+        expect(r1.containsPoint(point)).to.equal(true);
     });
 
     it('Should return FALSE if a point is contained outside of the rectangle for x', () => {
         let point = {x:-2.9234,y:93.1234};
-        expect(r1.contains(point)).to.equal(false);
+        expect(r1.containsPoint(point)).to.equal(false);
     });
 
     it('Should return FALSE if a point is contained outside of the rectangle for y', () => {
         let point = {x:-2.1234,y:102.2234};
-        expect(r1.contains(point)).to.equal(false);
+        expect(r1.containsPoint(point)).to.equal(false);
     });
 
     it('Should return FALSE if a point is contained outside of the rectangle for x and y', () => {
         let point = {x:-2.9234,y:102.2234};
-        expect(r1.contains(point)).to.equal(false);
+        expect(r1.containsPoint(point)).to.equal(false);
     });
+    it('Should have a function to determine if a rectangle overlaps another', () =>{
+        expect(r1.overlapsRectangle).to.be.a('function');
+    });
+    it('Should return TRUE if one rectangle overlaps another', () => {
+        expect(r2.overlapsRectangle(r1)).to.equal(true);
+    });
+    let r3 = new rectangle;
+    r3.x = 4.76544;
+    r3.y = 97.12345;
+    r3.w = 2;
+    r3.h = 5;
+    it('Should return TRUE if one rectangle overlaps another on one edge only', () => {
+        expect(r2.overlapsRectangle(r3)).to.equal(true);
+    });
+
+
 
 });
