@@ -31,7 +31,10 @@ return Object.assign({
         return this._h;
     },
     contains(point) {
-        
+        return  point.x >= this.x &&             // evaluate the left edge of the rectangle
+                point.x <= this.x + this.w &&    // evaluate the right edge of the rectangle
+                point.y >= this.y &&             // evaluate the bottom edge of the rectangle
+                point.y <= this.y + this.h       // evaluate the top edge of the rectangle    
     }
 
 });
