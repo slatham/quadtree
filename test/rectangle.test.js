@@ -1,5 +1,6 @@
-const rectangle = require('../src/Rectangle.js');
+const rectangle = require('../lib/Rectangle');
 const expect = require('chai').expect;
+
 
 describe('# Rectangle Object', () =>{
     const r1 = new rectangle;

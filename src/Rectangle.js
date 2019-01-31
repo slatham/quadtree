@@ -1,4 +1,4 @@
-module.exports = function rectangle(){
+const rectangle = () => {
 
 return Object.assign({
     _x: 0,
@@ -44,3 +44,4 @@ return Object.assign({
     }
 });
 }
+module.exports = rectangle;
