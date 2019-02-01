@@ -13,4 +13,14 @@ gulp.task('build', () => {
 
 });
 
+// TODO:
+// add a task to run the compile,
+// then build the file as above, 
+// then add a task to run mocha tests on the built file, then lint it, then remove all but the top "strict mode" declarations,
+// then get all the module names - point, rectangle, circle and add them to a single export statement at the bottom of the file,
+// then delete the other export statements in the file,
+// then copyright notice to top of file
+// add a cleanup option
+// create a minified version of the file
+
 

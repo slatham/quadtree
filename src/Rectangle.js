@@ -1,4 +1,4 @@
-module.exports = ({x, y, w, h}) => ({
+const rectangle = ({x, y, w, h}) => ({
     x, y, w, h,
     containsPoint(point) {
         return  point.x >= this.x &&             
@@ -13,3 +13,4 @@ module.exports = ({x, y, w, h}) => ({
                 rectangle.y + rectangle.h < this.y)     
     }
 });
+module.exports = rectangle;
