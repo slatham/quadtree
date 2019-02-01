@@ -1,6 +1,3 @@
-module.exports = ({x, y, data}) => ({ // using arrow function explicit return feature
-    x, y, data  // using object destructuring
+module.exports = ({x, y, data}) => ({
+    x, y, data
 });
-
-// TODO rewrite Rectangle in this format
-
