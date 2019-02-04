@@ -1,4 +1,4 @@
-const point = ({x, y, data}) => ({
+const Point = ({x, y, data}) => ({
     x, y, data
 });
-module.exports = point;
+module.exports = Point;
