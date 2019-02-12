@@ -1,3 +1,4 @@
+// rework using prototypes
 const Rectangle = require('./Rectangle');
 // factory function with object destructuring
 const Quadtree = (boundingBox, maxPointsPerNode) => {
