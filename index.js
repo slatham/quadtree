@@ -4,11 +4,11 @@ const Point = require('./lib/Point');
 const Quadtree = require('./lib/Quadtree');
 const util = require('util');
 
-const r1 = Rectangle({x:0,y:0,w:100,h:100});
+const r1 = new Rectangle(0,0,10,10);
 
 
-const q1 = Quadtree(r1,5);
-for (let i = 0; i < 100; i+=10){
+const q1 = new Quadtree(r1,5);
+for (let i = 0; i < 10; i++){
     point = Point({x:i, y:i,data:'Test'})
     q1.insertPoint(point);
 }
