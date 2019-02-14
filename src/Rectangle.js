@@ -9,7 +9,6 @@ class Rectangle {
         this.w= w;
         this.h= h;
     }
- 
     containsPoint(point) {
         return  point.x >= this.x &&             
                 point.x <= this.x + this.w &&    
