@@ -2,10 +2,10 @@ const Rectangle = require('../lib/Rectangle');
 const Point = require('../lib/Point');
 const expect = require('chai').expect;
 
-describe('# Rectangle Object', () =>{
-    const r1 = new Rectangle({x:-2.23456,y:92.12345,w:5,h:10});
-    const r2 = new Rectangle({x:-3.23456,y:97.12345,w:8,h:11});
-    const r3 = new Rectangle({x:4.76544,y:97.12345,w:2,h:5});
+describe('# A Rectangle', () =>{
+    const r1 = new Rectangle(-2.23456,92.12345,5,10);
+    const r2 = new Rectangle(-3.23456,97.12345,8,11);
+    const r3 = new Rectangle(4.76544,97.12345,2,5);
     const p1 = new Point({x:2.1234,y:93.1234,data:'test'});
     const p2 = new Point ({x:-2.23456,y:93.1234,data:'test'});
     const p3 = new Point ({x:-1.23456,y:92.12345});
