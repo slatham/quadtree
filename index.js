@@ -5,7 +5,7 @@ const Quadtree = require('./lib/Quadtree');
 const util = require('util');
 
 const r1 = new Rectangle(-10,-10,10,10);
-const r2 = new Rectangle(-10,-10,5,5)
+const r2 = new Rectangle(-5,-5,5,5)
 
 const q1 = new Quadtree(r1,1);
 for (let i = -9; i < 0; i++){

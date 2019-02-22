@@ -70,10 +70,12 @@ class Quadtree {
         // if is a Leaf node - i.e. no children
         if (this.points.length > 0 && this.childNodes.length === 0){
             // add points
+            // range may overlap a box but the point could still be outside of
+            // the range
             let validPoints = this.points.filter(point => range.containsPoint(point))
             
-            validPoints.reduce((acc, val) => acc.concat(val), []);
-            pointsFound.push(validPoints);
+            //validPoints.reduce((acc, val) => acc.concat(val), []);
+            pointsFound.push(...validPoints);
             return
             //return pointsFound.reduce((acc, val) => acc.concat(val), []);
         }
@@ -82,15 +84,15 @@ class Quadtree {
      //   if(this.childNodes.length > 0) {
             
             this.childNodes.forEach(node => {
-                node.queryPoints(range, pointsFound);
+                node.queryPoints(range, pointsFound);   // recursive bit!
             })
 
             //return pointsFound.reduce((acc, val) => acc.concat(val), []);
     //    } 
 
         //return pointsFound
-        return new Set(pointsFound.reduce((acc, val) => acc.concat(val), []));
-
+       // return new Set(pointsFound.reduce((acc, val) => acc.concat(val), []));
+       return new Set(pointsFound);
     }
 
 }
