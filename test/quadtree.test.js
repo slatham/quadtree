@@ -60,6 +60,25 @@ describe('# A Quadtree', () =>{
         
     })
 
+    it('Should have a function to query the tree', () =>{
+        expect(qt.queryPoints).to.be.an('function')
+    })
+
+    it('Should return the correct amount of points for a query', () => {
+       
+        const range = new Rectangle(50,50,9,9);
+        for (let i = 0; i <= 100; i++){
+        
+                point = Point({x:i, y:i,data:'Test'})
+                qt.insertPoint(point);
+            }
+        expect(qt.queryPoints(range).size).to.equal(10);
+
+
+    });
+
+   
+
 
 
 

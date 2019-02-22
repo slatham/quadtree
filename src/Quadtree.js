@@ -57,6 +57,42 @@ class Quadtree {
         
     }
 
+    
+
+    queryPoints(range, pointsFound = []) {
+        
+        // early return if range is outside of bounding box
+        if(!range.overlapsRectangle(this.boundingBox)){
+            //return pointsFound.reduce((acc, val) => acc.concat(val), []);
+            return
+        }
+
+        // if is a Leaf node - i.e. no children
+        if (this.points.length > 0 && this.childNodes.length === 0){
+            // add points
+            let validPoints = this.points.filter(point => range.containsPoint(point))
+            
+            validPoints.reduce((acc, val) => acc.concat(val), []);
+            pointsFound.push(validPoints);
+            return
+            //return pointsFound.reduce((acc, val) => acc.concat(val), []);
+        }
+
+        // if has children
+     //   if(this.childNodes.length > 0) {
+            
+            this.childNodes.forEach(node => {
+                node.queryPoints(range, pointsFound);
+            })
+
+            //return pointsFound.reduce((acc, val) => acc.concat(val), []);
+    //    } 
+
+        //return pointsFound
+        return new Set(pointsFound.reduce((acc, val) => acc.concat(val), []));
+
+    }
+
 }
 
 module.exports = Quadtree;

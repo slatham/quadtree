@@ -4,14 +4,18 @@ const Point = require('./lib/Point');
 const Quadtree = require('./lib/Quadtree');
 const util = require('util');
 
-const r1 = new Rectangle(0,0,10,10);
+const r1 = new Rectangle(-10,-10,10,10);
+const r2 = new Rectangle(-10,-10,5,5)
 
-const q1 = new Quadtree(r1,5);
-for (let i = 0; i < 10; i++){
-
+const q1 = new Quadtree(r1,1);
+for (let i = -9; i < 0; i++){
+console.log(i)
     point = Point({x:i, y:i,data:'Test'})
     q1.insertPoint(point);
 }
 
+
 console.log('-----------------------------------------')
 console.log(util.inspect(q1, {showHidden:false, depth:null}));
+
+console.log(q1.queryPoints(r2)) 
