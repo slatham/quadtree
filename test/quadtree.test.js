@@ -31,15 +31,18 @@ describe('# A Quadtree', () =>{
    
     });
 
+    // one point added
     it('Should be able to add a point', ()=>{
         qt.insertPoint(Point({x:20,y:50,data:"Test"}))
         expect(qt.points.length).to.equal(1);
     })
 
+    // no point added
     it('Should not add a point if the point is outside the boundingBox', () =>{
         qt.insertPoint(Point({x:20,y:500,data:"Test"}))
         expect(qt.points.length).to.equal(1);
     })
+    // 9 points added
     it('Should add all points untill reaching maxPointsPerNode without subdividing', () => {
         for(let i = 0; i < maxPointsPerNode -1;i++){
             qt.insertPoint(Point({x:i,y:i,data:"Test123"}))
@@ -49,7 +52,7 @@ describe('# A Quadtree', () =>{
         expect(qt.childNodes.length).to.equal(0);
 
     })
-    
+    // one point added
     it('Should subdivide into 4 once over the maxPointsPerNode',()=>{
         qt.insertPoint(Point({x:5,y:5,data:"Subdivide Test"}))
         expect(qt.points.length).to.equal(0);
@@ -64,6 +67,11 @@ describe('# A Quadtree', () =>{
         expect(qt.queryPoints).to.be.an('function')
     })
 
+    it('Should return a Set of points when queried', () => {
+        const range = new Rectangle(50,50,9,9);
+        expect(qt.queryPoints(range) instanceof Set).to.equal(true)
+    })
+    // 101 points added
     it('Should return the correct amount of points for a query', () => {
        
         const range = new Rectangle(50,50,9,9);
@@ -73,13 +81,25 @@ describe('# A Quadtree', () =>{
                 qt.insertPoint(point);
             }
         expect(qt.queryPoints(range).size).to.equal(10);
-
+        
 
     });
 
-   
+    it('Should return valid objects as part of the Set', () =>{
+        const range = new Rectangle(50,50,9,9);
+        let dataValue = true;
+        qt.queryPoints(range).forEach(el => {
+            let isEqualToTest = el.data === "Test";
+            dataValue = isEqualToTest && dataValue
+        })
 
+        expect(dataValue).to.equal(true);
 
+    })
+
+    it('Should return all points if no range is passed to the query', () => {
+        expect(qt.queryPoints().size).to.equal(112)
+    })
 
 
 

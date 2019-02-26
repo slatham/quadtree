@@ -60,6 +60,10 @@ class Quadtree {
     
 
     queryPoints(range, pointsFound = []) {
+
+        if(typeof range === 'undefined'){
+            range = this.boundingBox;
+        }
         
         // early return if range is outside of bounding box
         if(!range.overlapsRectangle(this.boundingBox)){

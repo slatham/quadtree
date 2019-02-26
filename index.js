@@ -9,7 +9,7 @@ const r2 = new Rectangle(-5,-5,5,5)
 
 const q1 = new Quadtree(r1,1);
 for (let i = -9; i < 0; i++){
-console.log(i)
+//console.log(i)
     point = Point({x:i, y:i,data:'Test'})
     q1.insertPoint(point);
 }
@@ -18,4 +18,8 @@ console.log(i)
 console.log('-----------------------------------------')
 console.log(util.inspect(q1, {showHidden:false, depth:null}));
 
-console.log(q1.queryPoints(r2)) 
+// all points
+console.log(q1.queryPoints()) 
+
+// points in range
+console.log(q1.queryPoints(r2))
