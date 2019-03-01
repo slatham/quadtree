@@ -3,10 +3,14 @@ const srcDir = './src';
 const compileDir = './lib';
 const buildDir = './build';
 const concat = require('gulp-concat');
+const esLint = require('gulp-eslint');
 
 gulp.task('build', () => {
 
     return gulp.src([`${compileDir}/*.js`])
+	.pipe(esLint())
+	.pipe(esLint.format())
+	.pipe(esLint.failAfterError())
         .pipe(concat('index.js'))
         .pipe(gulp.dest(buildDir))
 

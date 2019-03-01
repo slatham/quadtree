@@ -1,20 +1,26 @@
 "use strict";
 
-var Point = function Point(_ref) {
-    var x = _ref.x,
-        y = _ref.y,
-        data = _ref.data;
-    return {
-        x: x, y: y, data: data
-    };
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Point = function Point(x, y, data) {
+    _classCallCheck(this, Point);
+
+    this.x = x;
+    this.y = y;
+    this.data = data;
 };
 
+module.exports = Point;
+//# sourceMappingURL=Point.js.map
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-
+var Rectangle = require('./Rectangle');
 
 var Quadtree = function () {
     function Quadtree(boundingBox, maxPointsPerNode) {
@@ -22,40 +28,33 @@ var Quadtree = function () {
 
         this.boundingBox = boundingBox;
         this.maxPointsPerNode = maxPointsPerNode;
-        this.points = []; // array to host the points
-        this.childNodes = []; // child nodes
-        // a node is either a leaf - i.e. no children
-        // 
-        // a branch -  i.e has 4 children
-        rect(this.boundingBox.x, this.boundingBox.y, this.boundingBox.w, this.boundingBox.h);
+        this.points = [];
+        this.childNodes = [];
+        //rect(this.boundingBox.x,this.boundingBox.y,this.boundingBox.w,this.boundingBox.h)
     }
-    // insert a point into the quadtree
-
 
     _createClass(Quadtree, [{
         key: 'insertPoint',
         value: function insertPoint(point) {
             var _this = this;
 
-            // check if valid point - within bounding box
+            // early return if the point isn't within the bounding box
             if (!this.boundingBox.containsPoint(point)) {
                 return false;
             }
-
-            // if isLeaf - i.e. no children and not full
+            // if is a Leaf node - i.e. no children and not full
             if (this.points.length < this.maxPointsPerNode && this.childNodes.length === 0) {
-
                 // insert Point
                 this.points.push(point);
                 return;
             }
-
-            // if is a leaf node but full subdivide
-            // split the bounding box into 4
-            // crate 4 new quadtrees with the 4 new boxes
-            // and set them as child nodes
+            /** 
+             * If is a leaf node but full, subdivide.
+             * split the bounding box into 4
+             * crate 4 new quadtrees with the 4 new boxes
+             * and set them as child nodes
+             */
             if (this.childNodes.length === 0) {
-
                 var x = this.boundingBox.x;
                 var y = this.boundingBox.y;
                 var w = this.boundingBox.w / 2;
@@ -64,46 +63,87 @@ var Quadtree = function () {
                 var nw = new Quadtree(new Rectangle(x, y + h, w, h), this.maxPointsPerNode);
                 var se = new Quadtree(new Rectangle(x + w, y, w, h), this.maxPointsPerNode);
                 var sw = new Quadtree(new Rectangle(x, y, w, h), this.maxPointsPerNode);
-                this.childNodes.push(ne);
-                this.childNodes.push(nw);
-                this.childNodes.push(se);
-                this.childNodes.push(sw);
-
+                // add the quadtrees as child nodes
+                this.childNodes.push(ne, nw, se, sw);
+                // next, add the point that could
+                // not fit into the parent node
                 this.points.push(point);
-                //console.log(points)
+                // loop through all of the points and add them again
                 this.points.forEach(function (p) {
-
                     _this.insertPoint(p);
                 });
-                console.log(this.points);
+
+                // empty the points array after they've been 
+                // redistributed
                 this.points.splice(0, this.maxPointsPerNode + 1);
-
-                //insertPoint(point);
-
                 return;
             }
             // if is not a leaf node, call insert on children
             this.childNodes.forEach(function (el) {
                 el.insertPoint(point);
             });
-
-            //
-            //points.splice(0,1);
-            // console.log(points)
-            // points = [];
-            // console.log(points)
-            //return
         }
+    }, {
+        key: 'queryPoints',
+        value: function queryPoints(range) {
+            var pointsFound = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
-        //return {boundingBox, insertPoint, points, childNodes}
 
+            if (typeof range === 'undefined') {
+                range = this.boundingBox;
+            }
 
+            // early return if range is outside of bounding box
+            if (!range.overlapsRectangle(this.boundingBox)) {
+                //return pointsFound.reduce((acc, val) => acc.concat(val), []);
+                return;
+            }
+
+            // if is a Leaf node - i.e. no children
+            if (this.points.length > 0 && this.childNodes.length === 0) {
+                // add points
+                // range may overlap a box but the point could still be outside of
+                // the range
+                var validPoints = this.points.filter(function (point) {
+                    return range.containsPoint(point);
+                });
+
+                //validPoints.reduce((acc, val) => acc.concat(val), []);
+                pointsFound.push.apply(pointsFound, _toConsumableArray(validPoints));
+                return;
+                //return pointsFound.reduce((acc, val) => acc.concat(val), []);
+            }
+
+            // if has children
+            //   if(this.childNodes.length > 0) {
+
+            this.childNodes.forEach(function (node) {
+                node.queryPoints(range, pointsFound); // recursive bit!
+            });
+
+            //return pointsFound.reduce((acc, val) => acc.concat(val), []);
+            //    } 
+
+            //return pointsFound
+            // return new Set(pointsFound.reduce((acc, val) => acc.concat(val), []));
+            return new Set(pointsFound);
+        }
     }]);
 
     return Quadtree;
 }();
 
+module.exports = Quadtree;
+//# sourceMappingURL=Quadtree.js.map
+"use strict";
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// Rectangle factory function 
+// using arrow notation with implicit return
+// and object destructuring 
 var Rectangle = function () {
     function Rectangle(x, y, w, h) {
         _classCallCheck(this, Rectangle);
@@ -129,3 +169,5 @@ var Rectangle = function () {
     return Rectangle;
 }();
 
+module.exports = Rectangle;
+//# sourceMappingURL=Rectangle.js.map
