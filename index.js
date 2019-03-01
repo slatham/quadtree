@@ -10,7 +10,7 @@ const r2 = new Rectangle(-5,-5,5,5)
 const q1 = new Quadtree(r1,1);
 for (let i = -9; i < 0; i++){
 //console.log(i)
-    point = Point({x:i, y:i,data:'Test'})
+    point = new Point(i, i,'Test')
     q1.insertPoint(point);
 }
 

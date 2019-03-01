@@ -6,13 +6,13 @@ describe('# A Rectangle', () =>{
     const r1 = new Rectangle(-2.23456,92.12345,5,10);
     const r2 = new Rectangle(-3.23456,97.12345,8,11);
     const r3 = new Rectangle(4.76544,97.12345,2,5);
-    const p1 = new Point({x:2.1234,y:93.1234,data:'test'});
-    const p2 = new Point ({x:-2.23456,y:93.1234,data:'test'});
-    const p3 = new Point ({x:-1.23456,y:92.12345});
-    const p4 = new Point ({x:-2.23456,y:92.12345});
-    const p5 = new Point ({x:-2.9234,y:93.1234});
-    const p6 = new Point ({x:-2.1234,y:102.2234});
-    const p7 = new Point ({x:-2.9234,y:102.2234});
+    const p1 = new Point(2.1234,93.1234,'test');
+    const p2 = new Point (-2.23456,93.1234,'test');
+    const p3 = new Point (-1.23456,92.12345);
+    const p4 = new Point (-2.23456,92.12345);
+    const p5 = new Point (-2.9234,93.1234);
+    const p6 = new Point (-2.1234,102.2234);
+    const p7 = new Point (-2.9234,102.2234);
 
     it('Should instantiate to an object r1', () => {
         expect(r1).to.be.an('object');

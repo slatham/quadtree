@@ -33,19 +33,19 @@ describe('# A Quadtree', () =>{
 
     // one point added
     it('Should be able to add a point', ()=>{
-        qt.insertPoint(Point({x:20,y:50,data:"Test"}))
+        qt.insertPoint(new Point(20,50,"Test"))
         expect(qt.points.length).to.equal(1);
     })
 
     // no point added
     it('Should not add a point if the point is outside the boundingBox', () =>{
-        qt.insertPoint(Point({x:20,y:500,data:"Test"}))
+        qt.insertPoint(new Point(20,500,"Test"))
         expect(qt.points.length).to.equal(1);
     })
     // 9 points added
     it('Should add all points untill reaching maxPointsPerNode without subdividing', () => {
         for(let i = 0; i < maxPointsPerNode -1;i++){
-            qt.insertPoint(Point({x:i,y:i,data:"Test123"}))
+            qt.insertPoint(new Point(i,i,"Test123"))
         }
 
         expect(qt.points.length).to.equal(10);
@@ -54,7 +54,7 @@ describe('# A Quadtree', () =>{
     })
     // one point added
     it('Should subdivide into 4 once over the maxPointsPerNode',()=>{
-        qt.insertPoint(Point({x:5,y:5,data:"Subdivide Test"}))
+        qt.insertPoint(new Point(5,5,"Subdivide Test"))
         expect(qt.points.length).to.equal(0);
         expect(qt.childNodes.length).to.equal(4);
         //console.log('-----------------------------------------')
@@ -77,7 +77,7 @@ describe('# A Quadtree', () =>{
         const range = new Rectangle(50,50,9,9);
         for (let i = 0; i <= 100; i++){
         
-                point = Point({x:i, y:i,data:'Test'})
+                point = new Point(i, i,'Test')
                 qt.insertPoint(point);
             }
         expect(qt.queryPoints(range).size).to.equal(10);
