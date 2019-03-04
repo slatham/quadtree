@@ -1,6 +1,6 @@
-const Rectangle = require('../lib/Rectangle');
-const Point = require('../lib/Point');
-const Quadtree = require('../lib/Quadtree');
+const qtree = require('../build/index');
+//const Point = require('../lib/Point');
+//const Quadtree = require('../lib/Quadtree');
 const expect = require('chai').expect;
 const util = require('util');
 
@@ -10,8 +10,8 @@ describe('# A Quadtree', () =>{
     const w = 100;
     const h = 100;
     const maxPointsPerNode = 10;
-    const boundingBox = new Rectangle(x,y,w,h);
-    const qt = new Quadtree(boundingBox,maxPointsPerNode);
+    const boundingBox = new qtree.Rectangle(x,y,w,h);
+    const qt = new qtree.Quadtree(boundingBox,maxPointsPerNode);
 
     it('Should instantiate to an object qt', () => {
         expect(qt).to.be.an('object');
@@ -33,19 +33,19 @@ describe('# A Quadtree', () =>{
 
     // one point added
     it('Should be able to add a point', ()=>{
-        qt.insertPoint(new Point(20,50,"Test"))
+        qt.insertPoint(new qtree.Point(20,50,"Test"))
         expect(qt.points.length).to.equal(1);
     })
 
     // no point added
     it('Should not add a point if the point is outside the boundingBox', () =>{
-        qt.insertPoint(new Point(20,500,"Test"))
+        qt.insertPoint(new qtree.Point(20,500,"Test"))
         expect(qt.points.length).to.equal(1);
     })
     // 9 points added
     it('Should add all points untill reaching maxPointsPerNode without subdividing', () => {
         for(let i = 0; i < maxPointsPerNode -1;i++){
-            qt.insertPoint(new Point(i,i,"Test123"))
+            qt.insertPoint(new qtree.Point(i,i,"Test123"))
         }
 
         expect(qt.points.length).to.equal(10);
@@ -54,7 +54,7 @@ describe('# A Quadtree', () =>{
     })
     // one point added
     it('Should subdivide into 4 once over the maxPointsPerNode',()=>{
-        qt.insertPoint(new Point(5,5,"Subdivide Test"))
+        qt.insertPoint(new qtree.Point(5,5,"Subdivide Test"))
         expect(qt.points.length).to.equal(0);
         expect(qt.childNodes.length).to.equal(4);
         //console.log('-----------------------------------------')
@@ -68,16 +68,16 @@ describe('# A Quadtree', () =>{
     })
 
     it('Should return a Set of points when queried', () => {
-        const range = new Rectangle(50,50,9,9);
+        const range = new qtree.Rectangle(50,50,9,9);
         expect(qt.queryPoints(range) instanceof Set).to.equal(true)
     })
     // 101 points added
     it('Should return the correct amount of points for a query', () => {
        
-        const range = new Rectangle(50,50,9,9);
+        const range = new qtree.Rectangle(50,50,9,9);
         for (let i = 0; i <= 100; i++){
         
-                point = new Point(i, i,'Test')
+                point = new qtree.Point(i, i,'Test')
                 qt.insertPoint(point);
             }
         expect(qt.queryPoints(range).size).to.equal(10);
@@ -86,7 +86,7 @@ describe('# A Quadtree', () =>{
     });
 
     it('Should return valid objects as part of the Set', () =>{
-        const range = new Rectangle(50,50,9,9);
+        const range = new qtree.Rectangle(50,50,9,9);
         let dataValue = true;
         qt.queryPoints(range).forEach(el => {
             let isEqualToTest = el.data === "Test";

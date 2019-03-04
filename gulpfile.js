@@ -13,7 +13,7 @@ const watch = require('gulp-watch');
 const del = require('del');
 
 function stream() {
-	gulp.watch(`${srcDir}/*.js`,gulp.series(clean, lint, transpile, test, build, transform));
+	gulp.watch(`${srcDir}/*.js`,gulp.series(clean, lint, transpile, build, transform, test));
 }
 
 function getHeader() {
@@ -86,5 +86,5 @@ function getExport() {
 // then copyright notice to top of file
 // add a cleanup option
 // create a minified version of the file
-exports.default = gulp.series(clean, lint, transpile, test, build, transform, stream);
+exports.default = gulp.series(clean, lint, transpile, build, transform, test, stream);
 
