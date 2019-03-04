@@ -76,15 +76,7 @@ function getExport() {
 }
 
 
-
-// TODO:
-// add a task to run the compile,
-// then build the file as above, 
-// then add a task to run mocha tests on the built file, then lint it, then remove all but the top "strict mode" declarations,
-// then get all the module names - point, rectangle, circle and add them to a single export statement at the bottom of the file,
-// then delete the other export statements in the file,
-// then copyright notice to top of file
-// add a cleanup option
-// create a minified version of the file
-exports.default = gulp.series(clean, lint, transpile, build, transform, test, stream);
+exports.fullBuild = gulp.series(clean, lint, transpile, build, transform, test);
+exports.fullBuildAndWatch = gulp.series(clean, lint, transpile, build, transform, test, stream);
+exports.clean = gulp.series(clean)
 

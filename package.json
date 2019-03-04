@@ -9,7 +9,8 @@
   "scripts": {
     "test": "mocha",
     "compile": "babel src --out-dir lib --source-maps --watch",
-    "build": "gulp"
+    "build": "gulp fullBuild",
+    "watch": "gulp fullBuildAndWatch"
   },
   "repository": {
     "type": "git",
