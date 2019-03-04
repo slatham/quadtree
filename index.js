@@ -1,17 +1,15 @@
 // del - used for devel
-const Rectangle = require('./lib/Rectangle');
-const Point = require('./lib/Point');
-const Quadtree = require('./lib/Quadtree');
+const qt = require('./build/index');
 const util = require('util');
 
-const r1 = new Rectangle(-10,-10,10,10);
-const r2 = new Rectangle(-5,-5,5,5)
+const r1 = new qt.Rectangle(-10,-10,10,10);
+const r2 = new qt.Rectangle(-5,-5,5,5)
 
-const q1 = new Quadtree(r1,1);
+const q1 = new qt.Quadtree(r1,1);
 let point;
 for (let i = -9; i < 0; i++) {
   // console.log(i)
-  point = new Point (i, i, 'Test');
+  point = new qt.Point (i, i, 'Test');
   q1.insertPoint(point);
 }
 

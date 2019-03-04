@@ -5,7 +5,7 @@ class Rectangle {
   /**
    * New Rectangle with x & y
    * coordinates and a
-   * width and height.
+   * width and height
    * @param {float} x
    * @param {float} y
    * @param {float} w

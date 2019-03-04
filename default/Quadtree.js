@@ -1,7 +1,7 @@
 const Rectangle = require('./Rectangle');
 /**
  * Class describing the data-structure
- * for a Quadtree
+ * for a Quadtree.
  */
 class Quadtree {
   /**
