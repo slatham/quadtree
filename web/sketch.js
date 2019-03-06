@@ -1,78 +1,59 @@
+/**
+ * Setup the P5 drawing of the quadtree
+ */
 function setup() {
-
-    noFill()
-    stroke(0.1)
-    createCanvas(1500,1500)
-    scale(5)
-    const size = 200;
-    const r1 = new Rectangle(0,0,size,size);
-    let q1 = new Quadtree(r1,10);
-    for (let i = 0; i < 900; i++){
-        dot = {x:Math.random()*size, y:Math.random()*size,data:'Test'}
-      //  strokeWeight(3)
-       // point(dot.x,dot.y)
-        //strokeWeight(0.5)
-        q1.insertPoint(dot);
-        //console.log(q1.getStructure())
-        //rect(q1.boundingBox.x, q1.boundingBox.y, q1.boundingBox.w, q1.boundingBox.h)
-    //     //q1.showRect()
-
-    }
-
-
-    const structure = q1.getStructure();
-   // strokeWeight(1)
-        stroke(0,204,0)
-    structure.forEach(el => {
-        rect(el.x,el.y,el.w,el.h)
-    })
-    const allPoints = q1.queryPoints();
-    console.log(allPoints);
-    allPoints.forEach(el => {
-      //  strokeWeight(1)
-        stroke(233,4,200)
-        point(el.x,el.y)
-    });
-
-    
-
-// const q1 = new Quadtree(r1,50);
-// for (let i = 0; i < 100; i++){
-//     dot = Point({x:i, y:i,data:'Test'})
-    
-//     point(dot.x,dot.y)
-//     q1.insertPoint(dot);
-// }
-noStroke();
-fill(255,0,0,50)
-    // test a point query
-    const randomNumber = Math.floor(Math.random()*180)
-    console.log(randomNumber)
-    const queryRect = new Rectangle(52,52,99,101)
-    rect(queryRect.x,queryRect.y,queryRect.w,queryRect.h);
-    const queryPoints = q1.queryPoints(queryRect);
-    console.log(queryPoints)
-    queryPoints.forEach(el =>{
-        //strokeWeight(1)
-        stroke(25,204,0)
-        point(el.x,el.y)
-    })
-
-console.log(q1)
-
-       
-      
-    
-
-   
-
-    
-
+  // set a canvas size
+  createCanvas(1000, 1000);
+  // set the weight for easy viewing
+  strokeWeight(2);
+  // scale up the drawing
+  scale(1);
+  // size of the quadtree
+  const size = 500;
+  // set the position of the quadtree bounding box
+  const r1 = new Rectangle(10, 10, size, size);
+  // create the quadtree with maxpoints = 10
+  const q1 = new Quadtree(r1, 10);
+  // loop through and add random points to the quadtree
+  for (let i = 0; i < 200; i++) {
+    const dot = {x: Math.random()*size, y: Math.random()*size, data: 'Test'};
+    q1.insertPoint(dot);
+  }
+  // get the structure of the quadtree
+  const structure = q1.getStructure();
+  // set the stroke colour and alpha for the structure lines
+  stroke(0, 200, 100, 80);
+  // loop through and draw each of the bounding boxes
+  structure.forEach((el) => {
+    rect(el.x, el.y, el.w, el.h);
+  });
+  // get all points from the quadtree
+  const allPoints = q1.queryPoints();
+  // change the colour for the points
+  stroke(250, 10, 200, 90);
+  // loop through and draw each point
+  allPoints.forEach((el) => {
+    point(el.x, el.y);
+  });
+  // set up a random x and y for our query area
+  const randomNumberX = Math.floor(Math.random()*size);
+  const randomNumberY = Math.floor(Math.random()*size);
+  // set our query area
+  const queryRect = new Rectangle(randomNumberX, randomNumberY, 99, 101);
+  // colour in the query rectangle
+  fill(150, 150, 150, 50);
+  // draw the query area
+  rect(queryRect.x, queryRect.y, queryRect.w, queryRect.h);
+  // query the points within our area
+  const queryPoints = q1.queryPoints(queryRect);
+  // set up the stroke for the query points
+  strokeWeight(5);
+  // use a different colour for the found points
+  stroke(25, 204, 0, 150);
+  // draw each of the query points
+  queryPoints.forEach((el) => {
+    point(el.x, el.y);
+  });
 }
 
-function draw() {
-    
-    
-  
-  
-}
+function draw() {}
