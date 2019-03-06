@@ -1,5 +1,5 @@
 // del - used for devel
-const qt = require('./build/index');
+const qt = require('../build/index');
 const util = require('util');
 
 const r1 = new qt.Rectangle(-10,-10,10,10);
