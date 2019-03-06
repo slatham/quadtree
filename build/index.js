@@ -148,6 +148,29 @@ var Quadtree = function () {
       });
       return new Set(pointsFound);
     }
+    /**
+     * Get the structure of the tree
+     * @param {Array} structure
+     * @return {Array}
+     */
+
+  }, {
+    key: 'getStructure',
+    value: function getStructure() {
+      var structure = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+      // if is a leaf node, i.e. no children
+      // add to the structure.
+      if (this.childNodes.length === 0) {
+        structure.push(this.boundingBox);
+        return;
+      }
+      // if has children
+      this.childNodes.forEach(function (node) {
+        node.getStructure(structure);
+      });
+      return structure;
+    }
   }]);
 
   return Quadtree;
