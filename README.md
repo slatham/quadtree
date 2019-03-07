@@ -4,16 +4,24 @@
 ## Usage
 
 ### Install
-Use your node package manager to install
+Use your node package manager to install or if your are just using it in the browser,  skip this.
 ```
 npm install@slatham/quadtree
 ```
 
 ### import
-Include in your project
+Include in your node project
 ```javascript
 // import the module
 const qt = require('@slatham/quadtree');
+```
+Include in your HTML
+```HTML
+<html>
+  <head>
+    <title>My Quadtree</title>
+    <script src="quadtree.js"></script>
+  </head>
 ```
 ### Define the properties of the quadtree
 Set up the required properties of the quadtree
@@ -55,3 +63,4 @@ Will return all points in the quadtree
 // get all points simply by omitting the query area parameter on queryPoints()
 const allPoints = qt.queryPoints(); 
 ```
+## Examples
