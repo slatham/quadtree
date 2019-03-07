@@ -41,7 +41,7 @@ const point = new qt.Point(50, 50, 'Some test data');
 qtree.insertPoint();
 ```
 ### Query points
-Will return a Set of Point objects for the area defined
+Will return a ```Set``` of Point objects for the area defined
 ```Javascript
 // define an area to query
 // qt.Rectangle(x, y, w, h)
