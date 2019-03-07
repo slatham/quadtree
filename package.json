@@ -1,5 +1,5 @@
 {
-  "name": "quadtree",
+  "name": "@slatham/quadtree",
   "version": "1.0.0",
   "description": "Basic quadtree data structure",
   "main": "./build/index.js",
