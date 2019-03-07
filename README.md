@@ -48,7 +48,7 @@ Will insert a valid point into the quadtree
 // qt.Point(x, y, data)
 const point = new qt.Point(50, 50, 'Some test data');
 // insert point
-qtree.insertPoint();
+qtree.insertPoint(point);
 ```
 ### Query points
 Will return a ```Set``` of Point objects for the area defined
@@ -63,7 +63,7 @@ const points = qtree.queryPoints(queryArea);
 Will return all points in the quadtree
 ```Javascript
 // get all points simply by omitting the query area parameter on queryPoints()
-const allPoints = qt.queryPoints(); 
+const allPoints = qtree.queryPoints(); 
 ```
 ## Examples
 Two working examples can be found in the folders web_example and node_example.  To run the node example,
