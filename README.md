@@ -1,8 +1,8 @@
 # quadtree
-##Simple quadtree data structure
+## Simple quadtree data structure
 
-###Usage
-```
+### Usage
+```javascript
 const quadTree = require('@slatham/quadtree');
 
 ```
