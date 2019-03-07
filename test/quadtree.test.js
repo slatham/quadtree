@@ -1,8 +1,5 @@
 const qtree = require('../build/index');
-//const Point = require('../lib/Point');
-//const Quadtree = require('../lib/Quadtree');
 const expect = require('chai').expect;
-const util = require('util');
 
 describe('# A Quadtree', () =>{
     const x = 0;
