@@ -1,12 +1,12 @@
 # Quadtree
-A simple javascript implimentaion of a quadtree data structure for storing 2d objects - [Quadtree](https://en.wikipedia.org/wiki/Quadtree)
+A simple javascript implementation of a quadtree data structure for storing 2d objects - [Quadtree](https://en.wikipedia.org/wiki/Quadtree)
 
-For use in node projects or browser based projects.
+For use in node projects or browser based project.
 
 ## Usage
 
 ### Install
-Use your node package manager to install or if your are just using it in the browser,  skip this.
+Use your node package manager to install or if you're just using it in the browser, skip this.
 ```
 npm install @slatham/quadtree
 ```
