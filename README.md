@@ -29,3 +29,11 @@ const maxPointsPerNode = 10;
 // create the quadtree
 const qtree = new qt.Quadtree(area, maxPointsPerNode);
 ```
+### Insert points
+```Javascript
+// define a Point object
+// qt.Point(x, y, data)
+const point = new qt.Point(50, 50, 'Some test data');
+// insert point
+qtree.insertPoint()
+```
