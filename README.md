@@ -15,7 +15,7 @@ Include in your node project
 // import the module
 const qt = require('@slatham/quadtree');
 ```
-Include the file found in the build folder in your HTML
+Or, if it is a browser-based project, include the file found in the build folder in your HTML
 ```HTML
 <html>
   <head>
