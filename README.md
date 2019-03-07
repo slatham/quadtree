@@ -4,18 +4,19 @@
 ## Usage
 
 ### Install
-
+_Use your node package manager to install_
 ```
 npm install@slatham/quadtree
 ```
 
 ### import
-
+_Include in your project_
 ```javascript
 // import the module
 const qt = require('@slatham/quadtree');
 ```
 ### Define the properties of the quadtree
+_Set up the required properties of the quadtree_
 ```javascript
 // define the area of the quadtree
 // qt.Rectangle(x, y, w, h)
@@ -46,6 +47,11 @@ _Will return a Set of Point objects for the area defined_
 // qt.Rectangle(x, y, w, h)
 const queryArea = new qt.Rectangle(25, 25, 50, 50);
 // query the quadtree
-qtree.queryPoints(queryArea);
+const points = qtree.queryPoints(queryArea);
 ```
-
+### Get all points
+_Will return all points in the quadtree
+```Javascript
+// get all points simply by omitting the query area parameter on queryPoints()
+const allPoints = qt.queryPoints(); 
+```
