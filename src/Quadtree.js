@@ -88,7 +88,6 @@ class Quadtree {
       const validPoints = this.points.filter(
           (point) => range.containsPoint(point));
       pointsFound.push(...validPoints);
-      return;
     }
     // if has children
     this.childNodes.forEach((node) => {

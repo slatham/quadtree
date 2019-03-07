@@ -45,7 +45,7 @@ describe('# A Quadtree', () =>{
             qt.insertPoint(new qtree.Point(i,i,"Test123"))
         }
 
-        expect(qt.points.length).to.equal(10);
+        expect(qt.queryPoints().size).to.equal(10);
         expect(qt.childNodes.length).to.equal(0);
 
     })
