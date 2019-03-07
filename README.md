@@ -1,5 +1,5 @@
 # Quadtree
-
+A simple quadtree data structure for storing 2d objects. [Quadtree](https://en.wikipedia.org/wiki/Quadtree)
 
 ## Usage
 
