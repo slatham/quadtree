@@ -1,5 +1,7 @@
 # Quadtree
-A simple quadtree data structure for storing 2d objects - [Quadtree](https://en.wikipedia.org/wiki/Quadtree)
+A simple javascript implimentaion of a quadtree data structure for storing 2d objects - [Quadtree](https://en.wikipedia.org/wiki/Quadtree)
+
+For use in node projects or browser based projects.
 
 ## Usage
 
