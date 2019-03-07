@@ -9,7 +9,7 @@ Use your node package manager to install or if your are just using it in the bro
 npm install@slatham/quadtree
 ```
 
-### import
+### Import
 Include in your node project
 ```javascript
 // import the module
@@ -64,3 +64,10 @@ Will return all points in the quadtree
 const allPoints = qt.queryPoints(); 
 ```
 ## Examples
+Two working examples can be found in the folders web_example and node_example.  To run the node example,
+navigate to the node_example folder and run
+```
+node index.js
+```
+To run the web example that uses p5 to visualise the quadtree, open up web_example/index.html with your browser.
+
