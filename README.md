@@ -63,7 +63,7 @@ const points = qtree.queryPoints(queryArea);
 Will return all points in the quadtree
 ```Javascript
 // get all points simply by omitting the query area parameter on queryPoints()
-const allPoints = qt.queryPoints(); 
+const allPoints = qtree.queryPoints(); 
 ```
 ## Examples
 Two working examples can be found in the folders web_example and node_example.  To run the node example,
