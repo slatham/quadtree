@@ -240,5 +240,5 @@ var Rectangle = function () {
 //# sourceMappingURL=Rectangle.js.map
 
 if (typeof module !== 'undefined') {
-		module.exports = {Rectangle, Quadtree, Point}
+	module.exports = {Rectangle, Quadtree, Point}
 	}

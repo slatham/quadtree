@@ -9,74 +9,63 @@ const babel = require('gulp-babel');
 const sourceMaps = require('gulp-sourcemaps');
 const mocha = require('gulp-mocha');
 const insert = require('gulp-insert');
-const watch = require('gulp-watch');
 const del = require('del');
 
 function stream() {
-	gulp.watch(`${srcDir}/*.js`,gulp.series(clean, lint, transpile, build, transform, test));
+  gulp.watch(`${srcDir}/*.js`,gulp.series(clean, lint, transpile, build, transform, test));
 }
 
 function getHeader() {
-
-	return `/** Author: S Latham */\n\n`;
-
+  return `/** Author: S Latham */\n\n`;
 }
 
 function clean() {
-	return del([
-	`${compileDir}/*`,
-	`${buildDir}/*`
-	])
+  return del([`${compileDir}/*`, `${buildDir}/*`])
 }
 
 function lint() {
-    return gulp.src([`${srcDir}/*.js`]) // src dir
-	.pipe(esLint())			// pipe the src dir into eslint 	
-	.pipe(esLint.format())          // print out results to console
-	.pipe(esLint.failAfterError())  // exit with error code 1 on any linting error
+  return gulp.src([`${srcDir}/*.js`]) // src dir
+    .pipe(esLint())			// pipe the src dir into eslint 	
+    .pipe(esLint.format())          // print out results to console
+    .pipe(esLint.failAfterError())  // exit with error code 1 on any linting error
 }
 
 function transpile() {
-    return gulp.src([`${srcDir}/*.js`]) // src dir
-	.pipe(sourceMaps.init())	// initialise source maps
-	.pipe(babel())			// transpile the src to the compile dir
-	.pipe(sourceMaps.write('.'))	// write the source map files
-        .pipe(gulp.dest(compileDir))	// compile dir
-};
+  return gulp.src([`${srcDir}/*.js`]) // src dir
+    .pipe(sourceMaps.init())	// initialise source maps
+    .pipe(babel())			// transpile the src to the compile dir
+    .pipe(sourceMaps.write('.'))	// write the source map files
+    .pipe(gulp.dest(compileDir))	// compile dir
+}
 
 function test() {
-    return gulp.src([`${testDir}/*.js`], {read: false})
-	.pipe(mocha({reporter: 'progress'}))
+  return gulp.src([`${testDir}/*.js`], {read: false})
+    .pipe(mocha({reporter: 'progress'}))
 
 }
 
 function build() {
-	return gulp.src([`${compileDir}/*.js`])	// compile dir
-	    .pipe(concat('index.js'))		// concat all js file into one file
-	    .pipe(gulp.dest(buildDir))		// store in the build directory
+  return gulp.src([`${compileDir}/*.js`])	// compile dir
+	.pipe(concat('index.js'))		// concat all js file into one file
+	.pipe(gulp.dest(buildDir))		// store in the build directory
 };
 
 function transform() {
-	return gulp.src([`${buildDir}/*.js`])
-		.pipe(insert.transform(function(contents,file){
-			contents = contents.replace(/^module.*$/mg, '');
-			contents = contents.replace(/^var.*require.*$/mg, '');
-			return getHeader() + contents + getExport()
-		}))
-		.pipe(gulp.dest(buildDir))
+  return gulp.src([`${buildDir}/*.js`])
+	.pipe(insert.transform(function(contents,file){
+		contents = contents.replace(/^module.*$/mg, '');
+		contents = contents.replace(/^var.*require.*$/mg, '');
+		return getHeader() + contents + getExport()
+	}))
+	.pipe(gulp.dest(buildDir))
 }
 
 function getExport() {
-
-	return `\nif (typeof module !== 'undefined') {
-		module.exports = {Rectangle, Quadtree, Point}
+  return `\nif (typeof module !== 'undefined') {
+	module.exports = {Rectangle, Quadtree, Point}
 	}`
-
-
 }
-
 
 exports.fullBuild = gulp.series(clean, lint, transpile, build, transform, test);
 exports.fullBuildAndWatch = gulp.series(clean, lint, transpile, build, transform, test, stream);
-exports.clean = gulp.series(clean)
-
+exports.clean = gulp.series(clean);
