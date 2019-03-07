@@ -48,7 +48,7 @@ Will insert a valid point into the quadtree
 // qt.Point(x, y, data)
 const point = new qt.Point(50, 50, 'Some test data');
 // insert point
-qtree.insertPoint();
+qtree.insertPoint(point);
 ```
 ### Query points
 Will return a ```Set``` of Point objects for the area defined
