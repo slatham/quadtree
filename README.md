@@ -6,7 +6,7 @@ A simple quadtree data structure for storing 2d objects - [Quadtree](https://en.
 ### Install
 Use your node package manager to install or if your are just using it in the browser,  skip this.
 ```
-npm install@slatham/quadtree
+npm install @slatham/quadtree
 ```
 
 ### Import
