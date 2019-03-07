@@ -1,5 +1,5 @@
 # Quadtree
-A simple quadtree data structure for storing 2d objects. [Quadtree](https://en.wikipedia.org/wiki/Quadtree)
+A simple quadtree data structure for storing 2d objects - [Quadtree](https://en.wikipedia.org/wiki/Quadtree)
 
 ## Usage
 
@@ -20,7 +20,7 @@ Or, if it is a browser-based project, include the file found in the build folder
 <html>
   <head>
     <title>My Quadtree</title>
-    <script src="quadtree.js"></script>
+    <script src="/path/to/quadtree.js"></script>
   </head>
 ```
 ### Define the properties of the quadtree
