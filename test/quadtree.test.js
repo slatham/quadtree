@@ -40,7 +40,7 @@ describe('# A Quadtree', () =>{
         expect(qt.points.length).to.equal(1);
     })
     // 9 points added
-    it('Should add all points untill reaching maxPointsPerNode without subdividing', () => {
+    it('Should add all points until reaching maxPointsPerNode without subdividing', () => {
         for(let i = 0; i < maxPointsPerNode -1;i++){
             qt.insertPoint(new qtree.Point(i,i,"Test123"))
         }
