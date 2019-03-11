@@ -1,12 +1,12 @@
 # Quadtree
 A simple javascript implementation of a quadtree data structure for storing 2d objects - [Quadtree](https://en.wikipedia.org/wiki/Quadtree)
 
-For use in node projects or browser based project.
+For use in node or browser based projects.
 
 ## Usage
 
 ### Install
-Use your node package manager to install or if you're just using it in the browser, skip this.
+Use your node package manager to install, or if you're just using it in the browser, skip this.
 ```
 npm install @slatham/quadtree
 ```
@@ -22,7 +22,7 @@ Or, if it is a browser-based project, include the file found in the build folder
 <html>
   <head>
     <title>My Quadtree</title>
-    <script src="/path/to/quadtree.js"></script>
+    <script src="/path/to/build/index.js"></script>
   </head>
 ```
 ### Define the properties of the quadtree
@@ -37,13 +37,13 @@ const maxPointsPerNode = 10;
 ```
 ### Create the quadtree
 Will create a new quadtree
-```Javascript
+```javascript
 // create the quadtree
 const qtree = new qt.Quadtree(area, maxPointsPerNode);
 ```
 ### Insert points
 Will insert a valid point into the quadtree
-```Javascript
+```javascript
 // define a Point object
 // qt.Point(x, y, data)
 const point = new qt.Point(50, 50, 'Some test data');
@@ -52,7 +52,7 @@ qtree.insertPoint(point);
 ```
 ### Query points
 Will return a ```Set``` of Point objects for the area defined
-```Javascript
+```javascript
 // define an area to query
 // qt.Rectangle(x, y, w, h)
 const queryArea = new qt.Rectangle(25, 25, 50, 50);
@@ -61,7 +61,7 @@ const points = qtree.queryPoints(queryArea);
 ```
 ### Get all points
 Will return all points in the quadtree
-```Javascript
+```javascript
 // get all points simply by omitting the query area parameter on queryPoints()
 const allPoints = qtree.queryPoints(); 
 ```
