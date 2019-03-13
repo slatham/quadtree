@@ -42,4 +42,23 @@ class Rectangle {
             rectangle.y + rectangle.h < this.y);
   }
 }
-module.exports = Rectangle;
+/**
+ * Class describing an area
+ * given a centre point and a
+ * width and height from that point
+ */
+class Area extends Rectangle {
+  /**
+  *
+  * @param {float} x
+  * @param {float} y
+  * @param {float} w
+  * @param {float} h
+  */
+  constructor(x, y, w, h) {
+    x = x - w / 2;
+    y = y - h / 2;
+    super(x, y, w, h);
+  }
+}
+module.exports = Rectangle, Area;

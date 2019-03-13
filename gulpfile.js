@@ -62,10 +62,11 @@ function transform() {
 
 function getExport() {
   return `\nif (typeof module !== 'undefined') {
-	module.exports = {Rectangle, Quadtree, Point}
+	module.exports = {Rectangle, Quadtree, Point, Area}
 	}`
 }
 
 exports.fullBuild = gulp.series(clean, lint, transpile, build, transform, test);
+exports.fullBuildNoTest = gulp.series(clean, transpile, build, transform);
 exports.fullBuildAndWatch = gulp.series(clean, lint, transpile, build, transform, test, stream);
 exports.clean = gulp.series(clean);

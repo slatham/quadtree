@@ -38,8 +38,10 @@ function setup() {
   // set up a random x and y for our query area
   const randomNumberX = Math.floor(Math.random()*size);
   const randomNumberY = Math.floor(Math.random()*size);
+
+  circle(randomNumberX, randomNumberY, 2);
   // set our query area
-  const queryRect = new Rectangle(randomNumberX, randomNumberY, 99, 101);
+  const queryRect = new Area(randomNumberX, randomNumberY, 99, 101);
   // colour in the query rectangle
   fill(150, 150, 150, 50);
   // draw the query area

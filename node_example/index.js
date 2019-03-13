@@ -4,7 +4,7 @@ const util = require('util');
 // create a bounding box for the quadtree
 const r1 = new qt.Rectangle(0, 0, 10, 10);
 // create a query area
-const r2 = new qt.Rectangle(5, 5, 5, 5);
+const r2 = new qt.Area(7.5, 7.5, 2.5, 2.5);
 // create a new quadtree
 const q1 = new qt.Quadtree(r1, 1);
 // loop through and insert some points
