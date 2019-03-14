@@ -16,5 +16,14 @@ class Point {
     this.y = y;
     this.data = data;
   }
+  /**
+   * Check if two points are the same
+   * in both dimentions
+   * @param {Point} point
+   * @return {boolean}
+   */
+  isEqualTo(point) {
+    return this.x === point.x && this.y === point.y;
+  }
 }
 module.exports = Point;

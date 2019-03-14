@@ -16,7 +16,7 @@ function setup() {
   const q1 = new Quadtree(r1, 10);
   // loop through and add random points to the quadtree
   for (let i = 0; i < 200; i++) {
-    const dot = {x: Math.random()*size, y: Math.random()*size, data: 'Test'};
+    const dot = new Point(Math.random()*size, Math.random()*size, 'Test');
     q1.insertPoint(dot);
   }
   // get the structure of the quadtree

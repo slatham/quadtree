@@ -51,7 +51,7 @@ describe('# A Quadtree', () =>{
     })
     // one point added
     it('Should subdivide into 4 once over the maxPointsPerNode',()=>{
-        qt.insertPoint(new qtree.Point(5,5,"Subdivide Test"))
+        qt.insertPoint(new qtree.Point(5.1,5.1,"Subdivide Test"))
         expect(qt.points.length).to.equal(0);
         expect(qt.childNodes.length).to.equal(4);
         //console.log('-----------------------------------------')
@@ -68,15 +68,16 @@ describe('# A Quadtree', () =>{
         const range = new qtree.Rectangle(50,50,9,9);
         expect(qt.queryPoints(range) instanceof Set).to.equal(true)
     })
-    // 101 points added
+    // 51 points added
     it('Should return the correct amount of points for a query', () => {
        
         const range = new qtree.Rectangle(50,50,9,9);
-        for (let i = 0; i <= 100; i++){
+        for (let i = 50; i <= 100; i++){
         
-                point = new qtree.Point(i, i,'Test')
+                const point = new qtree.Point(i, i,'Test')
                 qt.insertPoint(point);
             }
+            
         expect(qt.queryPoints(range).size).to.equal(10);
         
 
@@ -95,9 +96,28 @@ describe('# A Quadtree', () =>{
     })
 
     it('Should return all points if no range is passed to the query', () => {
-        expect(qt.queryPoints().size).to.equal(112)
+        expect(qt.queryPoints().size).to.equal(62)
     })
 
+    describe('Issue #2 - Should not allow duplicate points', () =>{
+
+        it('Should not add a point that already exists', ()=>{
+            const boundingBox = new qtree.Rectangle(0,0,10,10);
+            const qt1 = new qtree.Quadtree(boundingBox,2);
+            qt1.insertPoint(new qtree.Point(5,5,"Subdivide Test"));
+            qt1.insertPoint(new qtree.Point(5,5,"Subdivide Test"));
+        
+            
+            expect(qt1.queryPoints().size).to.equal(1);
+            
+
+        })
+
+
+
+
+
+    });
 
 
 

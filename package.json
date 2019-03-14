@@ -1,6 +1,6 @@
 {
   "name": "@slatham/quadtree",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Basic quadtree data structure",
   "main": "./build/index.js",
   "directories": {

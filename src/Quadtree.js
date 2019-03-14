@@ -29,7 +29,13 @@ class Quadtree {
     if (this.points.length < this.maxPointsPerNode
         && this.childNodes.length === 0) {
       // insert Point
-      this.points.push(point);
+      const exists = this.points.some((p) => {
+        return p.isEqualTo(point);
+      });
+
+      if (!exists) {
+        this.points.push(point);
+      }
       return;
     }
     /**
