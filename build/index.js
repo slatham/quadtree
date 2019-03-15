@@ -28,7 +28,7 @@ var Point = function () {
   }
   /**
    * Check if two points are the same
-   * in both dimentions
+   * in both dimensions
    * @param {Point} point
    * @return {boolean}
    */
@@ -93,11 +93,12 @@ var Quadtree = function () {
       }
       // if is a Leaf node - i.e. no children and not full
       if (this.points.length < this.maxPointsPerNode && this.childNodes.length === 0) {
-        // insert Point
+        // check if point already exists
+        // with the same values for x & y
         var exists = this.points.some(function (p) {
           return p.isEqualTo(point);
         });
-
+        // if the point is unique, insert it
         if (!exists) {
           this.points.push(point);
         }
@@ -123,7 +124,15 @@ var Quadtree = function () {
         this.childNodes.push(ne, nw, se, sw);
         // next, add the point that could
         // not fit into the parent node
-        this.points.push(point);
+        // first, check the point has unique
+        // values for x & y
+        var _exists = this.points.some(function (p) {
+          return p.isEqualTo(point);
+        });
+        // if the point is unique, insert it
+        if (!_exists) {
+          this.points.push(point);
+        }
         // loop through all of the points and add them again
         this.points.forEach(function (p) {
           _this.insertPoint(p);

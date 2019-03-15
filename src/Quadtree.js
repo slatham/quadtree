@@ -28,11 +28,12 @@ class Quadtree {
     // if is a Leaf node - i.e. no children and not full
     if (this.points.length < this.maxPointsPerNode
         && this.childNodes.length === 0) {
-      // insert Point
+      // check if point already exists
+      // with the same values for x & y
       const exists = this.points.some((p) => {
         return p.isEqualTo(point);
       });
-
+      // if the point is unique, insert it
       if (!exists) {
         this.points.push(point);
       }
@@ -58,7 +59,15 @@ class Quadtree {
       this.childNodes.push(ne, nw, se, sw);
       // next, add the point that could
       // not fit into the parent node
-      this.points.push(point);
+      // first, check the point has unique
+      // values for x & y
+      const exists = this.points.some((p) => {
+        return p.isEqualTo(point);
+      });
+      // if the point is unique, insert it
+      if (!exists) {
+        this.points.push(point);
+      }
       // loop through all of the points and add them again
       this.points.forEach((p) => {
         this.insertPoint(p);

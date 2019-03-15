@@ -18,7 +18,7 @@ class Point {
   }
   /**
    * Check if two points are the same
-   * in both dimentions
+   * in both dimensions
    * @param {Point} point
    * @return {boolean}
    */
