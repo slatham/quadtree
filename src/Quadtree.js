@@ -42,7 +42,7 @@ class Quadtree {
     /**
      * If is a leaf node but full, subdivide.
      * split the bounding box into 4
-     * crate 4 new quadtrees with the 4 new boxes
+     * create 4 new quadtrees with the 4 new boxes
      * and set them as child nodes
      */
     if (this.childNodes.length === 0) {
